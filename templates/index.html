@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="{% static "js/chatbot.js" %}"></script>
+  </head>
+  <body ng-app>
+    <div class="content" ng-controller="ChatbotController">
+      <div class="panel" ng-repeat="msg in messages" ng-model="request.user">
+      	<div>{% if msg.sender == request.user %}Self{% else %}{{ msg.sender.user.get_full_name}}{% endif %}</div>
+      	<div>{{ msg.message }}</div>
+      	<div>{{ msg.send_date_time }}</div>
+      </div>
+    </div>
+  </body>
+</html>
